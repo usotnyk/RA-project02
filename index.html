@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Request via JQuery</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+
+var sections = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts', 'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food', 'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider']
+
+//3. extracting and saving 12 articles that have photos
+var getArticles = function (receivedData) {
+    var articles = [];
+    for (i = 0; i < 12; i++) {
+        articles.push(receivedData.results[i]);
+    }
+        console.log(articles);
+}
+//2. onReadyFn sends get request to NYT and receives result
+var onReadyFn = function () {
+    console.log("document loaded. onReadyFn is executing");
+    var selectedSection = sections[7];
+    console.log("selected section is "+ selectedSection);
+    //debugger;
+    var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
+    url += '?' + $.param({
+      'api-key': "0005835ede544efe89fbe3d6b4f8c386"
+    });
+    console.log (url);
+    //debugger
+
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).done(function(topStories) {
+      console.log(topStories);
+      getArticles(topStories);
+    }).fail(function(err) {
+      throw err;
+    });
+
+}
+
+//1. When document loads onReadyFn is called
+
+$(document).ready(onReadyFn); 
+
+    </script>
+</head>
+<body>
+<div id="output"></div>
+<p>Hello</p>
+</body>
+</html>
