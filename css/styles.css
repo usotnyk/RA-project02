@@ -1,0 +1,36 @@
+body, html {
+  background-color: black;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+header {
+  margin: 20vh 0 10vh 0;
+}
+
+footer {
+  color: #c2c2c2;
+  padding: 20px;
+}
+
+.text-center{
+  text-align: center;
+}
