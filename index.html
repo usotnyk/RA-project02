@@ -16,15 +16,27 @@ var sections = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'n
 
 var rednderArticlesAsHtml = function (arrayToRender) {
 
+  //Method 1
+ var output = "";
   for (i = 0; i < arrayToRender.length; i++) {
     //console.log(arrayToRender[i]);
     var abstract = arrayToRender[i].abstract;
+    var imageUrl = arrayToRender[i].multimedia[4].url;
+
     //console.log(arrayToRender[i].abstract);
-    output += "<div style='padding: 15px'>";
+    output += "<div style='padding: 15px;";
+    output += "background: url(\"";
+    output += imageUrl;
+    output += "\") center/cover no-repeat'>";
     output += abstract;
     output += "</div>";
   }
+  console.log(output);
   $("#output").html(output);
+
+  //Method 2
+
+
 
 };
 
@@ -46,7 +58,7 @@ var getFilteredArticles = function (receivedData) {
 //2. onReadyFn sends get request to NYT and receives result
 var onReadyFn = function () {
     console.log("document loaded. onReadyFn is executing");
-    var selectedSection = sections[4];
+    var selectedSection = sections[7];
     console.log("selected section is "+ selectedSection);
     //debugger;
     var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
@@ -67,7 +79,31 @@ var onReadyFn = function () {
     });
 
 }
+/* How to refactor:
+var init = function () {
+  init: {
 
+  },
+  call : {
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).done(function(topStories) {
+      console.log(topStories);
+      getFilteredArticles(topStories);
+    }).fail(function(err) {
+      throw err;
+    });
+  },
+  url : {
+    var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
+    url += '?' + $.param({
+      'api-key': "0005835ede544efe89fbe3d6b4f8c386"
+    });
+  }
+}
+init.call();
+*/
 //1. When document loads onReadyFn is called
 $(document).ready(onReadyFn); 
 
@@ -89,8 +125,8 @@ $(document).ready(onReadyFn);
       <option value="world">World</option>
     </select>
   </section>
-  <section class="flex flex-center">
-    <div id="output"></div>
+  <section class="flex flex-center flex-column" id="output">
+  <!--  <div ></div>!-->
   </section>
 </main>
 <footer class="text-center">&#169 Copyright 2017 INSTANEWS</footer>
