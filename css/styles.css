@@ -13,7 +13,7 @@ a, a:hover, a:focus, a:active {
   display: flex;
 }
 
-.flex-column {
+.flex-column-mb {
   flex-direction: column;
 }
 
@@ -22,7 +22,7 @@ a, a:hover, a:focus, a:active {
   align-items: center;
 }
 
-.flex-grow {
+.flex-grow-mb {
   flex: 1;
 }
 
@@ -50,5 +50,58 @@ footer {
 .article-box p {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   position: absolute;
-  bottom: 0;
+  bottom: 0; 
 }
+
+#clone {
+  display: none;
+}
+/* Tablet */
+/*@media (min-width: 600px) and (max-width: 1239px) {
+  
+  .flex-column-mb {
+    flex-direction: row;
+  }
+
+  .flex-justify-start-tb {
+    justify-content: flex-start;
+  }
+
+  .flex-grow-mb {
+    flex: 0;
+  }
+
+  main {
+    flex-wrap: wrap;
+  }
+
+  section {
+    width: 100%;
+  }
+
+}
+
+/* Desktop */
+/*@media (min-width: 1240px) {
+
+  .flex-column-mb {
+    flex-direction: row;
+  }
+
+  .flex-justify-start-tb {
+    justify-content: flex-start;
+  }
+
+  .flex-grow-mb {
+    flex: 0;
+  }
+
+ main {
+    flex-wrap: wrap;
+  }
+
+  section {
+    width: 100%;
+  }
+}
+

@@ -12,6 +12,8 @@
 
 var sections = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts', 'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food', 'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider']
 
+
+
 //4. looping through filtered array of articles to render HTML
 
 var renderArticlesAsHtml = function (arrayToRender) {
@@ -36,17 +38,19 @@ var renderArticlesAsHtml = function (arrayToRender) {
 
   //Method 2
   var clone = $("#clone").clone();
-
+  var resultCloneThing;
   for (var i = 0; i < arrayToRender.length; i++) {
     var abstract = arrayToRender[i].abstract;
     var imageUrl = arrayToRender[i].multimedia[4].url;
     var articleUrl = arrayToRender[i].url;
-    console.log(articleUrl);
+  
     $(clone).children("p").text(abstract);
     $(clone).attr("id","");
     $(clone).attr("href",articleUrl);
+    $(clone).addClass("rendered");
     $(clone).css('background-image', 'url("' + imageUrl + '")');
-    $("section").append(clone);
+    console.log(clone);
+    $(".tester").append(clone[0].outerHTML);
   }
 
 
@@ -68,9 +72,10 @@ var getFilteredArticles = function (receivedData) {
     renderArticlesAsHtml (filteredArticles);
 }
 //2. onReadyFn sends get request to NYT and receives result
-var onReadyFn = function () {
+var onReadyFn = function (someSection) {
+
     console.log("document loaded. onReadyFn is executing");
-    var selectedSection = sections[7];
+    var selectedSection = someSection;
     console.log("selected section is "+ selectedSection);
     //debugger;
     var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
@@ -78,7 +83,7 @@ var onReadyFn = function () {
       'api-key': "0005835ede544efe89fbe3d6b4f8c386"
     });
     console.log (url);
-   // $(".article-box").remove(); //deletes all loaded previously articles if any
+
 
     $.ajax({
       url: url,
@@ -116,21 +121,32 @@ var init = function () {
 }
 init.call();
 */
-//1. When document loads onReadyFn is called
-$(document).ready(onReadyFn); 
+
+//1. listening to selecting section click
+$(document).ready(function(){
+
+  $('body').on('change', 'select', function() {
+   var mySection = $(this).val();
+
+
+  $(".rendered").remove(); //deletes all loaded previously articles if any
+   onReadyFn(mySection)
+  });
+});
+
 
   </script>
 </head>
 
 
 <body>
-<main class="flex flex-column">
-  <header class = "flex flex-center flex-grow">
+<div class="flex flex-column-mb">
+  <header class = "flex flex-center flex-grow-mb flex-justify-start-tb">
     <img src="css/assets/images/nyt-logo.svg">
   </header>
-  <section class = "flex flex-center flex-column flex-center text-center">
+  <section class = "flex flex-center flex-column-mb flex-center text-center selection">
     <h4>Choose a section:</h4>
-    <select>
+    <select id="selectedSection">
       <option>Sections...</option>
       <option value="home">Home</option>
       <option value="opinion">Opinion</option>
@@ -160,13 +176,13 @@ $(document).ready(onReadyFn);
       <option value="insider">Insider</option>
 
     </select>
-  </section>
-  <section class="flex flex-center flex-column" id="output">
+  </section> 
+  <section class="flex flex-center flex-column-mb tester" id="output">
   <a href="" id="clone" class="article-box">
     <p></p>
   </a>
   </section>
-</main>
+</div>
 <footer class="text-center">&#169 Copyright 2017 INSTANEWS</footer>
 
 
