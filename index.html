@@ -18,6 +18,7 @@ var options = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'ny
 //5. looping through filtered array of articles to render HTML
 
 var renderArticlesAsHtml = function (arrayToRender) {
+  $("header").addClass("resize");
   var clone = $("#clone").clone();
   for (var i = 0; i < arrayToRender.length; i++) {
     var abstract = arrayToRender[i].abstract;
@@ -53,6 +54,7 @@ $(document).ajaxStart(function(){
 
 //2. onReadyFn sends get request to NYT and receives result
 var onOptionSelected = function (someSection) {
+    $(".rendered").remove();
     var selectedSection = someSection;
     var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
     url += '?' + $.param({
@@ -119,6 +121,7 @@ $(document).ready(function(){
         $("#selectedSection").append(optionClone[0].outerHTML);
       }
   $("#selectedSection").heapbox({
+    "title":"Select something...",// http://blog.bartos.me/heapbox-0-9-4-released/
     'onChange':function(val){
       onOptionSelected(val)
     }
@@ -131,7 +134,7 @@ $(document).ready(function(){
 
 <body>
 <div class="flex flex-column-all">
-  <header class = "flex flex-center flex-column-mb flex-grow-mb flex-justify-start-tb">
+  <header class = "flex flex-center flex-column-mb flex-grow-mb" id="header">
     <img src="css/assets/images/nyt-logo.svg">
     <section class = "flex flex-center flex-column-all">
       <h4>Choose a section:</h4>
