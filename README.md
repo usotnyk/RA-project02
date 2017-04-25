@@ -16,3 +16,4 @@ Done:
 
   -added function to dynamically populate options of <select> on page load;
   -added loading gif image for transition before the data were returned;
+  -added Heapbox functionality to style dropdown menu;
