@@ -13,30 +13,9 @@
 var sections = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts', 'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food', 'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider']
 
 
-
 //4. looping through filtered array of articles to render HTML
 
 var renderArticlesAsHtml = function (arrayToRender) {
-
-  //Method 1
- /*var output = "";
-  for (i = 0; i < arrayToRender.length; i++) {
-    //console.log(arrayToRender[i]);
-    var abstract = arrayToRender[i].abstract;
-    var imageUrl = arrayToRender[i].multimedia[4].url;
-
-    //console.log(arrayToRender[i].abstract);
-    output += "<div style='padding: 15px;";
-    output += "background: url(\"";
-    output += imageUrl;
-    output += "\") center/cover no-repeat'>";
-    output += abstract;
-    output += "</div>";
-  }
-  console.log(output);
-  $("#output").html(output);*/
-
-  //Method 2
   var clone = $("#clone").clone();
   var resultCloneThing;
   for (var i = 0; i < arrayToRender.length; i++) {
@@ -49,8 +28,7 @@ var renderArticlesAsHtml = function (arrayToRender) {
     $(clone).attr("href",articleUrl);
     $(clone).addClass("rendered");
     $(clone).css('background-image', 'url("' + imageUrl + '")');
-    console.log(clone);
-    $(".tester").append(clone[0].outerHTML);
+    $(".articles-container").append(clone[0].outerHTML);
   }
 
 
@@ -59,9 +37,6 @@ var renderArticlesAsHtml = function (arrayToRender) {
 //3. extracting and saving 12 articles that have photos
 var getFilteredArticles = function (receivedData) {
     var allArticles = [];
-    //for (i = 0; i < 12; i++) {
-      //  articles.push(receivedData.results[i]);
-    //};
     var articles = receivedData['results'];
     var filteredArticles = articles.filter(function(article) {
       return article.multimedia.length > 0;
@@ -140,44 +115,44 @@ $(document).ready(function(){
 
 
 <body>
-<div class="flex flex-column-mb">
-  <header class = "flex flex-center flex-grow-mb flex-justify-start-tb">
+<div class="flex flex-column-all">
+  <header class = "flex flex-center flex-column-mb flex-grow-mb flex-justify-start-tb">
     <img src="css/assets/images/nyt-logo.svg">
-  </header>
-  <section class = "flex flex-center flex-column-mb flex-center text-center selection">
-    <h4>Choose a section:</h4>
-    <select id="selectedSection">
-      <option>Sections...</option>
-      <option value="home">Home</option>
-      <option value="opinion">Opinion</option>
-      <option value="world">World</option>
-      <option value="national">National</option>
-      <option value="politics">Politics</option>
-      <option value="upshot">Upshot</option>
-      <option value="nyregion">NY Region</option>
-      <option value="business">Business</option>
-      <option value="technology">Technology</option>
-      <option value="science">Science</option>
-      <option value="health">Health</option>
-      <option value="sports">Sports</option>
-      <option value="arts">Arts</option>
-      <option value="books">Books</option>
-      <option value="world">World</option>
-      <option value="movies">Movies</option>
-      <option value="theater">Theater</option>
-      <option value="sundayreview">Sunday Review</option>
-      <option value="fashion">Fashion</option>
-      <option value="tmagazine">TMagazine</option>
-      <option value="food">Food</option>
-      <option value="travel">Travel</option>
-      <option value="realestate">Real Estate</option>
-      <option value="automobiles">Automobiles</option>
-      <option value="obituaries">Obituaries</option>
-      <option value="insider">Insider</option>
+    <section class = "flex flex-center flex-column-all">
+      <h4>Choose a section:</h4>
+      <select id="selectedSection">
+        <option>Sections...</option>
+        <option value="home">Home</option>
+        <option value="opinion">Opinion</option>
+        <option value="world">World</option>
+        <option value="national">National</option>
+        <option value="politics">Politics</option>
+        <option value="upshot">Upshot</option>
+        <option value="nyregion">NY Region</option>
+        <option value="business">Business</option>
+        <option value="technology">Technology</option>
+        <option value="science">Science</option>
+        <option value="health">Health</option>
+        <option value="sports">Sports</option>
+        <option value="arts">Arts</option>
+        <option value="books">Books</option>
+        <option value="world">World</option>
+        <option value="movies">Movies</option>
+        <option value="theater">Theater</option>
+        <option value="sundayreview">Sunday Review</option>
+        <option value="fashion">Fashion</option>
+        <option value="tmagazine">TMagazine</option>
+        <option value="food">Food</option>
+        <option value="travel">Travel</option>
+        <option value="realestate">Real Estate</option>
+        <option value="automobiles">Automobiles</option>
+        <option value="obituaries">Obituaries</option>
+        <option value="insider">Insider</option>
 
-    </select>
-  </section> 
-  <section class="flex flex-center flex-column-mb tester" id="output">
+      </select>
+    </section>
+  </header> 
+  <section class="flex flex-center flex-column-mb articles-container" id="output">
   <a href="" id="clone" class="article-box">
     <p></p>
   </a>

@@ -17,6 +17,10 @@ a, a:hover, a:focus, a:active {
   flex-direction: column;
 }
 
+.flex-column-all {
+  flex-direction: column;
+}
+
 .flex-center {
   justify-content: center;
   align-items: center;
@@ -33,9 +37,6 @@ header {
 footer {
   color: #c2c2c2;
   padding: 20px;
-}
-
-.text-center{
   text-align: center;
 }
 
@@ -57,51 +58,46 @@ footer {
   display: none;
 }
 /* Tablet */
-/*@media (min-width: 600px) and (max-width: 1239px) {
+@media (min-width: 600px) and (max-width: 1239px) {
   
   .flex-column-mb {
     flex-direction: row;
-  }
+}
 
-  .flex-justify-start-tb {
-    justify-content: flex-start;
-  }
-
-  .flex-grow-mb {
-    flex: 0;
-  }
-
-  main {
+  .articles-container {
+    flex-direction: row;
     flex-wrap: wrap;
   }
 
-  section {
-    width: 100%;
+  .article-box {
+    width: 33%;
   }
+
+  footer {
+  text-align: left;
+}  
 
 }
 
 /* Desktop */
-/*@media (min-width: 1240px) {
+@media (min-width: 1240px) {
 
   .flex-column-mb {
     flex-direction: row;
-  }
+}
 
-  .flex-justify-start-tb {
-    justify-content: flex-start;
-  }
-
-  .flex-grow-mb {
-    flex: 0;
-  }
-
- main {
+  .articles-container {
+    flex-direction: row;
     flex-wrap: wrap;
   }
 
-  section {
-    width: 100%;
+  .article-box {
+    width: 25%;
   }
+
+  footer {
+    text-align: left;
+  }
+
 }
 
