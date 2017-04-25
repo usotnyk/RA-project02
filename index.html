@@ -10,27 +10,24 @@
     
 <script>
 
-var sections = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts', 'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food', 'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider']
+var options = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts', 'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food', 'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider']
 
 
 //4. looping through filtered array of articles to render HTML
 
 var renderArticlesAsHtml = function (arrayToRender) {
   var clone = $("#clone").clone();
-  var resultCloneThing;
   for (var i = 0; i < arrayToRender.length; i++) {
     var abstract = arrayToRender[i].abstract;
     var imageUrl = arrayToRender[i].multimedia[4].url;
     var articleUrl = arrayToRender[i].url;
-  
     $(clone).children("p").text(abstract);
-    $(clone).attr("id","");
+    $(clone).removeAttr("id");
     $(clone).attr("href",articleUrl);
     $(clone).addClass("rendered");
     $(clone).css('background-image', 'url("' + imageUrl + '")');
     $(".articles-container").append(clone[0].outerHTML);
   }
-
 
 };
 
@@ -41,24 +38,16 @@ var getFilteredArticles = function (receivedData) {
     var filteredArticles = articles.filter(function(article) {
       return article.multimedia.length > 0;
     }).slice(0, 12);
-
-    console.log(filteredArticles);
-
     renderArticlesAsHtml (filteredArticles);
 }
 //2. onReadyFn sends get request to NYT and receives result
-var onReadyFn = function (someSection) {
-
-    console.log("document loaded. onReadyFn is executing");
+var onOptionSelected = function (someSection) {
     var selectedSection = someSection;
     console.log("selected section is "+ selectedSection);
-    //debugger;
     var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
     url += '?' + $.param({
       'api-key': "0005835ede544efe89fbe3d6b4f8c386"
     });
-    console.log (url);
-
 
     $.ajax({
       url: url,
@@ -97,19 +86,32 @@ var init = function () {
 init.call();
 */
 
-//1. listening to selecting section click
-$(document).ready(function(){
+//2. listening to selecting section click
+var onOptionsLoaded = function() {
 
   $('body').on('change', 'select', function() {
    var mySection = $(this).val();
-
-
-  $(".rendered").remove(); //deletes all loaded previously articles if any
-   onReadyFn(mySection)
+  $(".rendered").remove();
+   onOptionSelected(mySection)
   });
+};
+
+//1. Dynamically populating select options from an array
+
+$(document).ready(function(){
+    var optionClone = $("#optionClone").clone();
+    for (var i = 0; i < options.length; i++) {
+        var value = options[i];
+        var textField = options[i][0].toUpperCase() + options[i].slice(1);;
+
+        $(optionClone).attr("value",value);
+        $(optionClone).text(textField);
+        $(optionClone).removeAttr("id");
+        $("#selectedSection").append(optionClone[0].outerHTML);
+      }
+
+  onOptionsLoaded();
 });
-
-
   </script>
 </head>
 
@@ -121,34 +123,7 @@ $(document).ready(function(){
     <section class = "flex flex-center flex-column-all">
       <h4>Choose a section:</h4>
       <select id="selectedSection">
-        <option>Sections...</option>
-        <option value="home">Home</option>
-        <option value="opinion">Opinion</option>
-        <option value="world">World</option>
-        <option value="national">National</option>
-        <option value="politics">Politics</option>
-        <option value="upshot">Upshot</option>
-        <option value="nyregion">NY Region</option>
-        <option value="business">Business</option>
-        <option value="technology">Technology</option>
-        <option value="science">Science</option>
-        <option value="health">Health</option>
-        <option value="sports">Sports</option>
-        <option value="arts">Arts</option>
-        <option value="books">Books</option>
-        <option value="world">World</option>
-        <option value="movies">Movies</option>
-        <option value="theater">Theater</option>
-        <option value="sundayreview">Sunday Review</option>
-        <option value="fashion">Fashion</option>
-        <option value="tmagazine">TMagazine</option>
-        <option value="food">Food</option>
-        <option value="travel">Travel</option>
-        <option value="realestate">Real Estate</option>
-        <option value="automobiles">Automobiles</option>
-        <option value="obituaries">Obituaries</option>
-        <option value="insider">Insider</option>
-
+        <option id="optionClone">Sections...</option>
       </select>
     </section>
   </header> 
