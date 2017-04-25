@@ -1,11 +1,23 @@
 # RA-project02
 Instanews App
+<<<<<<< HEAD
+One-page responsive website that allows a user to filter top news story categories via New York Times API.
+=======
 
 Instanews App One-page responsive website that allows a user to filter top news story categories via New York Times API.
+>>>>>>> selectOptions
 
 Apr-25-2017
 
 To do:
+<<<<<<< HEAD
+  - Dynamically populate options in drop-down sections menu from an array;
+  - Complete responsive design for header: resize the header with jQuery;
+  - refactor code to clone parent <div> not <a>;
+  -Heapbox;
+
+Done:
+=======
 
   -Dynamically populate options in drop-down sections menu from an array;
   -Complete responsive design for header: resize the header with jQuery;
@@ -15,4 +27,4 @@ To do:
 Done:
 
   -added function to dynamically populate options of <select> on page load;
-  -added loading gif image for transition before the data were returned;
+>>>>>>> selectOptions

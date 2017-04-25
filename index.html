@@ -13,7 +13,7 @@
 var options = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts', 'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food', 'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider']
 
 
-//4. looping through filtered array of articles to render HTML
+//5. looping through filtered array of articles to render HTML
 
 var renderArticlesAsHtml = function (arrayToRender) {
   var clone = $("#clone").clone();
@@ -31,7 +31,7 @@ var renderArticlesAsHtml = function (arrayToRender) {
 
 };
 
-//3. extracting and saving 12 articles that have photos
+//4. extracting and saving 12 articles that have photos
 var getFilteredArticles = function (receivedData) {
     var allArticles = [];
     var articles = receivedData['results'];
@@ -40,6 +40,16 @@ var getFilteredArticles = function (receivedData) {
     }).slice(0, 12);
     renderArticlesAsHtml (filteredArticles);
 }
+
+//3. Shows loading gif when AJAX request is made and hides it after - independent function
+
+$(document).ajaxStart(function(){
+  console.log("ajaxStart is executing");
+    $('#loaderGif').show();
+ }).ajaxStop(function(){
+    $('#loaderGif').hide();
+ });
+
 //2. onReadyFn sends get request to NYT and receives result
 var onOptionSelected = function (someSection) {
     var selectedSection = someSection;
@@ -88,7 +98,6 @@ init.call();
 
 //2. listening to selecting section click
 var onOptionsLoaded = function() {
-
   $('body').on('change', 'select', function() {
    var mySection = $(this).val();
   $(".rendered").remove();
@@ -112,6 +121,7 @@ $(document).ready(function(){
 
   onOptionsLoaded();
 });
+
   </script>
 </head>
 
@@ -128,6 +138,9 @@ $(document).ready(function(){
     </section>
   </header> 
   <section class="flex flex-center flex-column-mb articles-container" id="output">
+  <div id="loaderGif">
+    <img src="css/assets/images/ajax-loader.gif">
+  </div>
   <a href="" id="clone" class="article-box">
     <p></p>
   </a>
