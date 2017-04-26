@@ -30,6 +30,10 @@ a, a:hover, a:focus, a:active {
   flex: 1;
 }
 
+.text-center {
+  text-align: center;
+}
+
 header {
   height: 100vh;
 }

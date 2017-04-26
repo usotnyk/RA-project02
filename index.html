@@ -19,6 +19,12 @@ var options = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'ny
 
 var renderArticlesAsHtml = function (arrayToRender) {
   $("header").addClass("resize");
+
+  if (arrayToRender.length) == 0 {
+    dispalyEmptyArticlesView(); //create div to display if articles array is returned empty (give class .rendered);
+    return;
+  }
+
   var clone = $("#clone").clone();
   for (var i = 0; i < arrayToRender.length; i++) {
     var abstract = arrayToRender[i].abstract;
@@ -55,6 +61,11 @@ $(document).ajaxStart(function(){
 //2. onReadyFn sends get request to NYT and receives result
 var onOptionSelected = function (someSection) {
     $(".rendered").remove();
+
+    if (someSection == undefined) {
+      return;
+    }
+    
     var selectedSection = someSection;
     var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
     url += '?' + $.param({
@@ -67,7 +78,7 @@ var onOptionSelected = function (someSection) {
     }).done(function(topStories) {
       getFilteredArticles(topStories);
     }).fail(function(err) {
-      throw err;
+      console.error(err);
     });
 
 }
@@ -118,6 +129,7 @@ $(document).ready(function(){
         $(optionClone).attr("value",value);
         $(optionClone).text(textField);
         $(optionClone).removeAttr("id");
+        // $(optionClone).removeAttr("disabled");
         $("#selectedSection").append(optionClone[0].outerHTML);
       }
   $("#selectedSection").heapbox({
@@ -143,16 +155,16 @@ $(document).ready(function(){
       </select>
     </section>
   </header> 
-  <section class="flex flex-center flex-column-mb articles-container" id="output">
-  <div id="loaderGif">
+  <div id="loaderGif" class="text-center">
     <img src="css/assets/images/ajax-loader.gif">
   </div>
-  <a href="" id="clone" class="article-box">
-    <p></p>
-  </a>
+  <section class="flex flex-center flex-column-mb articles-container" id="output">
+    <a href="" target="_blank" id="clone" class="article-box">
+      <p></p>
+    </a>
   </section>
 </div>
-<footer class="text-center">&#169 Copyright 2017 INSTANEWS</footer>
+<footer>&#169 Copyright 2017 INSTANEWS</footer>
 
 
 

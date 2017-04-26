@@ -18,3 +18,8 @@ Done:
   -added loading gif image for transition before the data were returned;
   -added Heapbox functionality to style dropdown menu;
   -implemented resizing of <header> once articles are loaded.
+  -fixed bug with loader gif showing on "Sections.." option (placeholder);
+
+  Apr-26-2017
+
+  -write dispalyEmptyArticlesView function in case of an error;
