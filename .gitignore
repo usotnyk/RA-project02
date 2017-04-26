@@ -13,3 +13,5 @@ hs_err_pid*
 
 NYT-key
 *.sublime*
+
+/node_modules/*
