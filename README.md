@@ -1,7 +1,15 @@
 # RA-project02
 Instanews App
 
-Instanews App One-page responsive website that allows a user to filter top news story categories via New York Times API.
+Instanews App One-page responsive website that allows a user to filter top news story categories via New York Times API. 
+
+Technologies used in this project:
+
+-HTML5/CSS3/JavaScriptES5
+-JQuery
+-Gulp
+-SASS
+-
 
 Apr-25-2017
 
@@ -23,3 +31,9 @@ Done:
   Apr-26-2017
 
   -write dispalyEmptyArticlesView function in case of an error;
+
+  Apr-27-2017
+
+  -configured gulp task systme set-up (concat, sass, cleanCSS, watch, browser-sync);
+  - sass variables';
+  -Applied transitions to show/hide abstract on hover.

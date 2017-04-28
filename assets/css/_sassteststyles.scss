@@ -1,0 +1,138 @@
+
+body, html {
+  background-color: black;
+  color: $font-color-main;
+  font-family: $font-family-main;
+  font-size: 16px;
+}
+
+a, a:hover, a:focus, a:active {
+  color: $font-color-main;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column-mb {
+  flex-direction: column;
+}
+
+.flex-column-all {
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-grow-mb {
+  flex: 1;
+}
+
+.text-center {
+  text-align: center;
+}
+
+header {
+  height: 100vh;
+}
+
+footer {
+  color: #c2c2c2;
+  padding: 20px;
+  text-align: center;
+}
+
+.resize {
+  height: auto;
+  padding: 5vh 0;
+}
+
+.article-box {
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.article-box p {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  -webkit-transition: opacity 2s; /* Safari */
+  transition: opacity 2s; 
+}
+
+.article-box:hover + .article-box>p {
+  opacity: 1;
+}
+
+#clone {
+  display: none;
+}
+
+#loaderGif {
+  display: none;
+}
+
+#optionClone {
+  display: none;
+}
+
+#error {
+  display: none;
+  padding-top: 10vh;
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 1239px) {
+  
+  .flex-column-mb {
+    flex-direction: row;
+}
+
+  .articles-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .article-box {
+    width: 33%;
+  }
+
+  footer {
+  text-align: left;
+}  
+
+}
+
+/* Desktop */
+@media (min-width: 1240px) {
+
+  .flex-column-mb {
+    flex-direction: row;
+}
+
+  .articles-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .article-box {
+    width: 25%;
+  }
+
+  footer {
+    text-align: left;
+  }
+
+  #header {
+    justify-content: flex-start;
+  }
+
+}
+
