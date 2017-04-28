@@ -64,12 +64,24 @@ footer {
   bottom: 0;
   opacity: 0;
   -webkit-transition: opacity 2s; /* Safari */
-  transition: opacity 2s; 
+  transition: opacity 2s;
+  //@include transition (opacity 2s); 
 }
 
-.article-box:hover + .article-box>p {
+.article-box:hover p {
   opacity: 1;
 }
+
+//SASS
+/*
+@mixin transition ($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}*/
+
 
 #clone {
   display: none;
