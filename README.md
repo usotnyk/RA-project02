@@ -37,3 +37,9 @@ Done:
   -configured gulp task systme set-up (concat, sass, cleanCSS, watch, browser-sync);
   - sass variables';
   -Applied transitions to show/hide abstract on hover.
+
+  May 5th-2017 (edit by J.N.)
+  -added css reset
+  -styling added to abstract text and selector heading text
+  -moved Javascript out of html in to /js/main.js
+  -edited media calls to be more progressive
