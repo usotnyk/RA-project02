@@ -6,12 +6,12 @@ URL: https://usotnyk.github.io/RA-project02/
 
 Used tech and libraries:
 
-HTML5
-CSS3
-JavaScriptES5
-Heapbox jQuery plugin used to style select menu
-Gulp build system
-SASS
+- HTML5 
+- CSS3 
+- JavaScriptES5 
+- Heapbox jQuery plugin used to style select menu 
+- Gulp build system 
+- SASS
 
 
 Apr-25-2017
