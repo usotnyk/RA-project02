@@ -1,36 +1,36 @@
-# RA-project02
-Instanews App
+# RA-project02: Instanews App
 
 Instanews App One-page responsive website that allows a user to filter top news story categories via New York Times API. 
 
-Technologies used in this project:
+URL: https://usotnyk.github.io/RA-project02/
 
--HTML5/CSS3/JavaScriptES5
--JQuery
--Gulp
--SASS
--
+Used tech and libraries:
+
+HTML5
+CSS3
+JavaScriptES5
+Heapbox jQuery plugin used to style select menu
+Gulp build system
+SASS
+
 
 Apr-25-2017
 
 To do:
 
-  -Dynamically populate options in drop-down sections menu from an array;
-  -Complete responsive design for header: resize the header with jQuery;
-  -refactor code to clone parent <div>;
-  -Heapbox;
+  Dynamically populate options in drop-down sections menu from an array;
+  Complete responsive design for header: resize the header with jQuery;
+  Refactor code to clone parent <div>;
+  Heapbox;
 
 Done:
 
-  -added function to dynamically populate options of <select> on page load;
-  -added loading gif image for transition before the data were returned;
-  -added Heapbox functionality to style dropdown menu;
-  -implemented resizing of <header> once articles are loaded.
-  -fixed bug with loader gif showing on "Sections.." option (placeholder);
+  added function to dynamically populate options of <select> on page load;
+  added loading gif image for transition before the data were returned;
+  added Heapbox functionality to style dropdown menu;
+  implemented resizing of <header> once articles are loaded.
+  fixed bug with loader gif showing on "Sections.." option (placeholder);
 
-  Apr-26-2017
-
-  -write dispalyEmptyArticlesView function in case of an error;
 
   Apr-27-2017
 
