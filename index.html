@@ -87,31 +87,6 @@ var onOptionSelected = function (someSection) {
     });
 
 }
-/* How to refactor:
-var init = function () {
-  init: {
-
-  },
-  call : {
-    $.ajax({
-      url: url,
-      method: 'GET',
-    }).done(function(topStories) {
-      console.log(topStories);
-      getFilteredArticles(topStories);
-    }).fail(function(err) {
-      throw err;
-    });
-  },
-  url : {
-    var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
-    url += '?' + $.param({
-      'api-key': "0005835ede544efe89fbe3d6b4f8c386"
-    });
-  }
-}
-init.call();
-*/
 
 //1. Dynamically populating select options from an array and passing the value of selected option to onOptionSelected
 

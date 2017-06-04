@@ -38,7 +38,18 @@ a, a:hover, a:focus, a:active {
 }
 
 header {
-  height: 100vh;
+  height: 50vh;
+  position: $header-position;
+  top: 0px;
+  margin: auto; 
+  z-index:100000; 
+  width:100%;
+}
+
+.under-header {
+  height: 50vh;
+  //display:none;
+  @include headerposition($header-position);
 }
 
 footer {
@@ -90,6 +101,11 @@ footer {
 #error {
   display: none;
   padding-top: 10vh;
+}
+
+.big-div {
+  height: 700px;
+  background: green;
 }
 
 /* Tablet */

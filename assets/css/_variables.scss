@@ -1,3 +1,19 @@
 $font-color-main: #ffffff;
 $font-family-main: Open Sans, serif;
 
+
+
+$header-position: initial;
+
+@mixin headerposition ($header-position) {
+  @if($header-position == 'fixed') {
+    display: block;
+    } @else {
+      display: none;
+    };
+}
+
+
+@mixin create-header($header-position, $bg) {
+  
+}
