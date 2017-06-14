@@ -5,6 +5,11 @@ body, html {
   font-size: 16px;
 }
 
+h4 {
+  padding: 20px 0;
+  text-align: left;
+}
+
 a, a:hover, a:focus, a:active {
   color: white;
 }
@@ -35,7 +40,7 @@ a, a:hover, a:focus, a:active {
 }
 
 header {
-  height: 100vh;
+  height: 90vh;
 }
 
 footer {
@@ -45,8 +50,12 @@ footer {
 }
 
 .resize {
-  height: auto;
-  padding: 5vh 0;
+  height: 20vh;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  img {
+    max-height: 45%;
+  }
 }
 
 .article-box {
@@ -60,7 +69,16 @@ footer {
 .article-box p {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   position: absolute;
-  bottom: 0; 
+  bottom: 0;
+  padding: 15px;
+  line-height: 1.2em;
+  font-size: 1.2em;
+  opacity: 0;
+  @include transition (opacity 2s);  
+}
+
+.article-box:hover p {
+  opacity: 1;
 }
 
 #clone {
@@ -68,7 +86,10 @@ footer {
 }
 
 #loaderGif {
+  margin-top: 20px;
   display: none;
+  //width: 400px;
+  //height: 400px;
 }
 
 #optionClone {
@@ -81,7 +102,7 @@ footer {
 }
 
 /* Tablet */
-@media (min-width: 600px) and (max-width: 1239px) {
+@media (min-width: 600px) {
   
   .flex-column-mb {
     flex-direction: row;
@@ -97,17 +118,26 @@ footer {
   }
 
   footer {
-  text-align: left;
-}  
+    text-align: left;
+  }
+
+  .resize {
+    //height: 20vh;
+    padding: 20px 0;
+    margin-bottom: 0px;
+      img {
+      max-height: 70%;
+    }
+  }  
 
 }
 
 /* Desktop */
-@media (min-width: 1240px) {
+@media (min-width: 1000px) {
 
   .flex-column-mb {
     flex-direction: row;
-}
+  }
 
   .articles-container {
     flex-direction: row;
@@ -125,6 +155,15 @@ footer {
   #header {
     justify-content: flex-start;
   }
+
+  .resize {
+    //height: 20vh;
+    padding: 20px 0;
+    margin-bottom: 0px;
+      img {
+      max-height: 70%;
+    }
+  }  
 
 }
 

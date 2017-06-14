@@ -2,143 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Instanews</title>
+   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="js/jquery.heapbox-0.9.3.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/main.js"></script>  
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/themes/dark/css/dark.css" type="text/css" media="screen" />
   <link href="dist/min.style.css" rel="stylesheet">
-    
-<script>
-
-var options = ['home', 'opinion', 'world', 'national', 'politics', 'upshot', 'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts', 'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food', 'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider']
-
-//6. Function to be called when no articles are available from nyt
-
-var dispalyEmptyArticlesView = function() {
-  $('#error').show();
-};
-
-//5. looping through filtered array of articles to render HTML
-
-var renderArticlesAsHtml = function (arrayToRender) {
-  $("header").addClass("resize");
-
-  if (arrayToRender.length == 0) {
-    dispalyEmptyArticlesView(); //create div to display if articles array is returned empty (give class .rendered);
-    return;
-  }
-
-  var clone = $("#clone").clone();
-  for (var i = 0; i < arrayToRender.length; i++) {
-    var abstract = arrayToRender[i].abstract;
-    var imageUrl = arrayToRender[i].multimedia[4].url;
-    var articleUrl = arrayToRender[i].url;
-    $(clone).children("p").text(abstract);
-    $(clone).removeAttr("id");
-    $(clone).attr("href",articleUrl);
-    $(clone).addClass("rendered");
-    $(clone).css('background-image', 'url("' + imageUrl + '")');
-    $(".articles-container").append(clone[0].outerHTML);
-  }
-
-};
-
-//4. extracting and saving 12 articles that have photos
-var getFilteredArticles = function (receivedData) {
-    var allArticles = [];
-    var articles = receivedData['results'];
-    var filteredArticles = articles.filter(function(article) {
-      return article.multimedia.length > 0;
-    }).slice(0, 12);
-    renderArticlesAsHtml (filteredArticles);
-}
-
-//3. Shows loading gif when AJAX request is made and hides it after - independent function
-
-$(document).ajaxStart(function(){
-    $('#loaderGif').show();
- }).ajaxStop(function(){
-    $('#loaderGif').hide();
- });
-
-//2. onReadyFn sends get request to NYT and receives result
-var onOptionSelected = function (someSection) {
-    $(".rendered").remove();
-
-    if (someSection == undefined) {
-      return;
-    }
-    
-    var selectedSection = someSection;
-    var url = "https://api.nytimes.com/svc/topstories/v2/" + selectedSection + ".json";
-    url += '?' + $.param({
-      'api-key': "0005835ede544efe89fbe3d6b4f8c386"
-    });
-
-    $.ajax({
-      url: url,
-      method: 'GET',
-    }).done(function(topStories) {
-      getFilteredArticles(topStories);
-    }).fail(function(err) {
-      console.error(err);
-    });
-
-}
-
-//1. Dynamically populating select options from an array and passing the value of selected option to onOptionSelected
-
-$(document).ready(function(){
-    var optionClone = $("#optionClone").clone();
-    for (var i = 0; i < options.length; i++) {
-        var value = options[i];
-        var textField = options[i][0].toUpperCase() + options[i].slice(1);;
-
-        $(optionClone).attr("value",value);
-        $(optionClone).text(textField);
-        $(optionClone).removeAttr("id");
-        // $(optionClone).removeAttr("disabled");
-        $("#selectedSection").append(optionClone[0].outerHTML);
-      }
-  $("#selectedSection").heapbox({
-    "title":"Select something...",// http://blog.bartos.me/heapbox-0-9-4-released/
-    'onChange':function(val){
-      onOptionSelected(val)
-    }
-  });
-});
-
-  </script>
 </head>
 
-
 <body>
-<!--<div class="flex flex-column-all">-->
+
   <header class = "flex flex-center flex-column-mb flex-grow-mb" id="header">
-    <img src="assets/images/nyt-logo.svg">
+    <img src="assets/images/nyt-logo.svg" alt="logo">
     <section class = "flex flex-center flex-column-all">
       <h4>Choose a section:</h4>
       <select id="selectedSection">
         <option id="optionClone">Sections...</option>
       </select>
+      <img id="loaderGif" class="text-center" src="assets/images/ajax-loader.gif" alt="loading">
       <div id="error" class="text-center">Unfortunatelly, there are no articles in this section.</div>
     </section>
   </header> 
-  <div id="loaderGif" class="text-center rendered">
-    <img src="assets/images/ajax-loader.gif">
-  </div>
+
   <section class="flex flex-center flex-column-mb articles-container" id="output">
     <a href="" target="_blank" id="clone" class="article-box">
       <p></p>
     </a>
   </section>
 <!--</div>-->
-<footer>&#169 Copyright 2017 INSTANEWS</footer>
-
-
-
+<footer>&#169; Copyright 2017 INSTANEWS</footer>
 
 </body>
 </html>
